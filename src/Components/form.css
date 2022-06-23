@@ -55,7 +55,6 @@ input:focus {
 a {
     color: #fff;
     text-decoration: none;
-    pointer-events: none;
 }
 
 .btn {
