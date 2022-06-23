@@ -6,50 +6,47 @@ function Frm() {
     let name = document.getElementById('name');
     let phone = document.getElementById('phone');
     const [file, setFile] = useState();
+    
     function handleChange(e) {
         console.log(e.target.files);
         setFile(URL.createObjectURL(e.target.files[0]));
     };
+    
+    const validateEmail = () => {
+        if (input.value == "" || input.value.indexOf("@") === -1) {
+            input.style.borderColor = '#FF3565';
+        } else {
+            input.style.borderColor = '#183FE1';
+        }
+    };
+    
+    const validateName = () => {
+        if (name.value.length < 3) {
+            name.style.borderColor = '#FF3565';
+        } else {
+            name.style.borderColor = '#183FE1';
+        }
+    };
+    
+    const validatePhone = () => {
+        if (phone.value.length <= 11) {
+            phone.style.borderColor = '#FF3565';
+        } else {
+            phone.style.borderColor = '#183FE1';
+        }
+    };
 
-    const validateEmail = (e) => {
-        let email = e.target.value;
-        if(email==="" || email.indexOf("@")===-1 ){
-          input.style.borderColor='#FF3565';
-        }
-        else{
-          input.style.borderColor='#183FE1';
-        }
-      };
 
-      const validateName = (e)=>{
-        let value = e.target.value;
-        if(value.length<3){
-            name.style.borderColor='#FF3565';
-        }
-        else{
-            name.style.borderColor='#183FE1';
-        }
-      }
-
-      const validatePhone = (e)=>{
-        let value = e.target.value;
-        if(value.length<=11){
-            phone.style.borderColor='#FF3565';
-        }
-        else{
-            phone.style.borderColor='#183FE1';
-        }
-      }
     return ( 
         <>
         <main className="contain">
             <form className="form">
             <label>Name:</label>
-            <input type="name" name="name" id="name" placeholder="Enter your name" onChange={(e) => validateName(e)}/>
+            <input type="name" name="name" id="name" placeholder="Enter your name" onChange={() => validateName()}/>
             <label>Email:</label>
-            <input type="email" name="email" id="email" placeholder="Enter your email" onChange={(e) => validateEmail(e)}/>
+            <input type="email" name="email" id="email" placeholder="Enter your email" onChange={() => validateEmail()}/>
             <label>Phone Number:</label>
-            <input type="tel" name="phone" id="phone" placeholder="Enter your number" onChange={(e) => validatePhone(e)}/>
+            <input type="tel" name="phone" id="phone" placeholder="Enter your number" onChange={() => validatePhone()}/>
             <label for= "sel"> </label>
             <select name="sel" id="sel">
             <option value="Sel">Select</option>
